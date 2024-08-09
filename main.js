@@ -26,7 +26,11 @@ app.whenReady().then(() => {
   createWindow()
 
   session.defaultSession.setDisplayMediaRequestHandler((request, callback) => {
-    desktopCapturer.getSources({ types: ['screen'] }).then((sources) => {
+    desktopCapturer.getSources({ types: ['window'] }).then((sources) => {
+      console.log('----------------')
+      console.log('事实上')
+      console.log('----------------')
+      console.log(sources)
       callback({ video: sources[0], audio: 'loopback' })
     })
   })
