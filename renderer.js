@@ -15,7 +15,6 @@ document.getElementById("startrecord").addEventListener('click', async (event) =
     });
 
     recorder = new MediaRecorder(stream);
-    console.log(recorder.getDisplayMedia)
     // console.log(event)
     console.log('开始录制')
 
@@ -56,5 +55,13 @@ document.getElementById("resumerecord").onclick = (event) => {
 
 document.getElementById("pauserecord").onclick = (event) => {
     console.log('暂停录制')
+    recorder.pause();
+}
+document.getElementById("startsharing").onclick = (event) => {
+    console.log('开始分享')
+    recorder.pause();
+}
+document.getElementById("endsharing").onclick = (event) => {
+    console.log('结束分享')
     recorder.pause();
 }
