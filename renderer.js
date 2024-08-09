@@ -25,7 +25,8 @@ document.getElementById("startrecord").addEventListener('click', async (event) =
     // outlined in https://web.dev/patterns/files/save-a-file/.
 
     // Prompt the user to choose where to save the recording file.
-    const suggestedName = "screen-recording.webm";
+    const surfix = Date.now();
+    const suggestedName = `screen-recording-${surfix}.webm`;
     const types = [{ accept: { "video/webm": [".webm"] } }]
     const startIn = "videos";
     const handle = await window.showSaveFilePicker({ startIn, suggestedName, types });
@@ -44,7 +45,16 @@ document.getElementById("startrecord").addEventListener('click', async (event) =
 })
 
 document.getElementById("endrecord").onclick = (event) => {
-    console.log(event)
     console.log('结束录制')
     recorder.stop();
+}
+
+document.getElementById("resumerecord").onclick = (event) => {
+    console.log('继续录制')
+    recorder.resume();
+}
+
+document.getElementById("pauserecord").onclick = (event) => {
+    console.log('暂停录制')
+    recorder.pause();
 }
