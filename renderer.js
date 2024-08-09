@@ -10,8 +10,8 @@ let recorder;
 
 document.getElementById("startrecord").addEventListener('click', async (event) => {
     stream = await navigator.mediaDevices.getDisplayMedia({
-        audio:true,
-        video:true
+        audio: true,
+        video: true
     });
 
     recorder = new MediaRecorder(stream);
@@ -26,7 +26,9 @@ document.getElementById("startrecord").addEventListener('click', async (event) =
 
     // Prompt the user to choose where to save the recording file.
     const suggestedName = "screen-recording.webm";
-    const handle = await window.showSaveFilePicker({ suggestedName });
+    const types = [{ accept: { "video/webm": [".webm"] } }]
+    const startIn = "videos";
+    const handle = await window.showSaveFilePicker({ startIn, suggestedName, types });
     const writable = await handle.createWritable();
 
     // Start recording.
