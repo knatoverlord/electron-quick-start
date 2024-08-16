@@ -7,15 +7,24 @@
  */
 let stream;
 let recorder;
+let imageCapture;
 
 document.getElementById("startrecord").addEventListener('click', async (event) => {
+
+    // window.electronAPI.requestThumbnail('thumbnaildataurl', (event, data) => {
+    //     // 在这里处理接收到的缩略图数据并显示
+    //     const imgElement = document.createElement('img');
+    //     console.log(data)
+    //     imgElement.src = data;
+    //     document.body.appendChild(imgElement);
+    // });
+
     stream = await navigator.mediaDevices.getDisplayMedia({
         audio: true,
         video: true
     });
-
+    
     recorder = new MediaRecorder(stream);
-    // console.log(event)
     console.log('开始录制')
 
     // For the sake of more legible code, this sample only uses the
@@ -42,6 +51,8 @@ document.getElementById("startrecord").addEventListener('click', async (event) =
         }
     });
 })
+
+
 
 document.getElementById("endrecord").onclick = (event) => {
     console.log('结束录制')

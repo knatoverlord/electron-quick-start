@@ -1,5 +1,5 @@
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, session, desktopCapturer } = require('electron')
+const { app, BrowserWindow, session, desktopCapturer, ipcMain } = require('electron')
 const path = require('node:path')
 
 function createWindow() {
@@ -26,13 +26,7 @@ app.whenReady().then(() => {
   createWindow()
 
   session.defaultSession.setDisplayMediaRequestHandler((request, callback) => {
-    // desktopCapturer.getSources({ types: ['window'] }).then((sources) => {
-    desktopCapturer.getSources({ types: ['screen'] }).then((sources) => {
-      console.log('----------------')
-      // console.log(sources)
-      // const source = sources.filter(item=>item.name.endsWith('Microsoft​ Edge'))
-      // console.log(source)
-      // callback({ video: source, audio: 'loopback' })
+    desktopCapturer.getSources({ types: ['screen'], thumbnailSize: { height: 100, width: 100 }, fetchWindowIcons: true }).then((sources) => {
       callback({ video: sources[0], audio: 'loopback' })
     })
   })
