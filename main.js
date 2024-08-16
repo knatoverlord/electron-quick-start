@@ -26,11 +26,13 @@ app.whenReady().then(() => {
   createWindow()
 
   session.defaultSession.setDisplayMediaRequestHandler((request, callback) => {
-    desktopCapturer.getSources({ types: ['window'] }).then((sources) => {
+    // desktopCapturer.getSources({ types: ['window'] }).then((sources) => {
+    desktopCapturer.getSources({ types: ['screen'] }).then((sources) => {
       console.log('----------------')
-      console.log('事实上')
-      console.log('----------------')
-      console.log(sources)
+      // console.log(sources)
+      // const source = sources.filter(item=>item.name.endsWith('Microsoft​ Edge'))
+      // console.log(source)
+      // callback({ video: source, audio: 'loopback' })
       callback({ video: sources[0], audio: 'loopback' })
     })
   })
